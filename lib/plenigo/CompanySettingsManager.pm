@@ -35,6 +35,8 @@ use Carp qw(confess);
 use Carp::Always;
 use plenigo::RestClient;
 
+our $VERSION = '2.0000';
+
 has configuration => (
     is       => 'ro',
     required => 1

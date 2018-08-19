@@ -9,6 +9,8 @@ use Data::UUID;
 use Moo;
 use plenigo::Ex;
 
+our $VERSION = '0.1000';
+
 has configuration => (
     is       => 'ro',
     required => 1

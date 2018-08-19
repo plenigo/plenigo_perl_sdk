@@ -1,6 +1,6 @@
 package plenigo;
 
-our $VERSION = 2.000;
+our $VERSION = '2.0000';
 
 =head1 NAME
 

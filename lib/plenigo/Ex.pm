@@ -1,6 +1,4 @@
 package plenigo::Ex;
-use Moo;
-with 'Throwable';
 
 =head1 NAME
 
@@ -19,6 +17,11 @@ with 'Throwable';
  plenigo::Ex represents an exception.
 
 =cut
+
+use Moo;
+with 'Throwable';
+
+our $VERSION = '2.0000';
 
 has code => (is=>'ro');
 has message  => (is=>'ro');
