@@ -1,4 +1,4 @@
-package plenigo::Meta;
+package plenigo;
 
 our $VERSION = 0.200;
 
