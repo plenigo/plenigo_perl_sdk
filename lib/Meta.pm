@@ -1,6 +1,6 @@
 package plenigo::Meta;
 
-our $VERSION = 2.0;
+our $VERSION = 0.200;
 
 =head1 NAME
 
