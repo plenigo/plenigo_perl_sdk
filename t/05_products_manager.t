@@ -5,6 +5,9 @@ use 5.10.0;
 use FindBin 1.51 qw( $RealBin );
 use lib $RealBin;
 
+=pod
+# integration tests must be filled with valid company data to run correctly
+
 use Test::More tests => 2;
 use plenigo::Configuration;
 use plenigo::ProductsManager;
@@ -21,3 +24,4 @@ is($product{'id'}, $product_id, 'Get product details for a single product.');
 
 my %product_list = $products->getAllProducts(0, 10);
 is($product_list{'pageNumber'}, 0, 'Get product details for all products.');
+=cut

@@ -5,6 +5,9 @@ use 5.10.0;
 use FindBin 1.51 qw($RealBin);
 use lib $RealBin;
 
+=pod
+# integration tests must be filled with valid company data to run correctly
+
 use Test::More tests => 1;
 use plenigo::Configuration;
 use plenigo::CustomersManager;
@@ -19,3 +22,4 @@ my $customersManager = plenigo::CustomersManager->new(configuration => $configur
 my $customerMailPart = 'perltest+' . time();
 my %customerDetails = $customersManager->registerCustomer($customerMailPart . '@example.com', 'DE', undef, 'MALE', 'Mike', 'Miller', 0, 0);
 ok($customersManager->editCustomer($customerDetails{'customerId'}, $customerMailPart . '_changed@example.com'), 'Customers email changed successfully.');
+=cut
