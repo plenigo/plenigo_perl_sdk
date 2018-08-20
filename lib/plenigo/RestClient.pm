@@ -17,7 +17,7 @@ use Data::UUID;
 use Moo;
 use plenigo::Ex;
 
-our $VERSION = '0.1000';
+our $VERSION = '0.1001';
 
 has configuration => (
     is       => 'ro',

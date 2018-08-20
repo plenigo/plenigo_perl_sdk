@@ -24,7 +24,7 @@ use Carp::Always;
 use Crypt::JWT qw(encode_jwt);
 use Data::UUID;
 
-our $VERSION = '2.0000';
+our $VERSION = '2.0001';
 
 has configuration => (
     is       => 'ro',
