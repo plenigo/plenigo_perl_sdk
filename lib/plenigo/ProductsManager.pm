@@ -1,4 +1,4 @@
-package plenigo::access::ProductsManager;
+package plenigo::ProductsManager;
 
 =head1 NAME
 
