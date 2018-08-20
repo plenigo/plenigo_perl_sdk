@@ -1,5 +1,13 @@
 package plenigo::RestClient;
 
+=head1 NAME
+ plenigo::RestClient - Only for internal usage.
+=head1 SYNOPSIS
+ Only for internal usage. Can contain breacking changes. DO NOT USE. 
+=head1 DESCRIPTION
+ plenigo::RestClient provides functionality for communication with the plenigo API. Only for internal usage. Can contain breacking changes. DO NOT USE. 
+=cut
+
 use REST::Client;
 use JSON;
 use Carp qw(confess);
