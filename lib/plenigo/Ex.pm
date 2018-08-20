@@ -21,7 +21,7 @@ package plenigo::Ex;
 use Moo;
 with 'Throwable';
 
-our $VERSION = '2.0001';
+our $VERSION = '2.0002';
 
 has code => (is=>'ro');
 has message  => (is=>'ro');

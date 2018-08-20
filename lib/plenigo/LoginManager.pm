@@ -35,7 +35,7 @@ use Carp::Always;
 use plenigo::Ex;
 use plenigo::RestClient;
 
-our $VERSION = '2.0001';
+our $VERSION = '2.0002';
 
 has configuration => (
     is       => 'ro',

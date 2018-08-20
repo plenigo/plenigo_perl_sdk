@@ -24,7 +24,7 @@ use Moo;
 use Carp qw(confess);
 use Carp::Always;
 
-our $VERSION = '2.0001';
+our $VERSION = '2.0002';
 
 has company_id => (
     is       => 'ro',
