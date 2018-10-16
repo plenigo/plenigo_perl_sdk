@@ -35,7 +35,7 @@ has configuration => (
 
 =cut
 
-=head2 hasAccess($customer_id, @product_ids)
+=head2 createCheckoutCode($product)
 
  Create checkout code necessary for plenigo checkout.
 
