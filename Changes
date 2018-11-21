@@ -1,4 +1,7 @@
-Changes for plenigo
- 
-2.0   2018-08-16
-      - first version of the plenigo Perl SDK
+Changes for plenigo perl SDK
+
+2.0004  2018-11-21
+        - Removed Carp::Always
+
+2.0003  2018-08-16
+        - first version of the plenigo Perl SDK
