@@ -20,11 +20,10 @@ package plenigo::CheckoutHelper;
 
 use Moo;
 use Carp qw(confess);
-use Carp::Always;
 use Crypt::JWT qw(encode_jwt);
 use Data::UUID;
 
-our $VERSION = '2.0003';
+our $VERSION = '2.0004';
 
 has configuration => (
     is       => 'ro',
