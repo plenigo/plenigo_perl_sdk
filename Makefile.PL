@@ -16,7 +16,6 @@ WriteMakefile(
     'Crypt::JWT' => '0.022',
     'Moo' => '2.003004',
     'Data::UUID' => '1.221',
-    'Carp::Always' => '0.13',
     'Throwable' => '0.200013',
   },
   (eval { ExtUtils::MakeMaker->VERSION(6.46) } ? (META_MERGE => {
