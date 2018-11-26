@@ -34,7 +34,7 @@ use Moo;
 use Carp qw(confess);
 use plenigo::RestClient;
 
-our $VERSION = '2.0004';
+our $VERSION = '2.0005';
 
 has configuration => (
     is       => 'ro',

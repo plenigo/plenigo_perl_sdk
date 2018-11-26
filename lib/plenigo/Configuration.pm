@@ -23,7 +23,7 @@ package plenigo::Configuration;
 use Moo;
 use Carp qw(confess);
 
-our $VERSION = '2.0004';
+our $VERSION = '2.0005';
 
 has company_id => (
     is       => 'ro',

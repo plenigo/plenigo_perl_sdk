@@ -9,8 +9,8 @@ package plenigo::CheckoutHelper;
  use plenigo::CheckoutHelper;
 
  my $product = plenigo::Product->createPlenigoProduct('PRODUCT_ID');
- my $checkoutHelper = plenigo::CheckoutHelper->new(configuration => $configuration);
- my $checkout_code = $checkoutHelper->createCheckoutCode($product);
+ my $checkout_helper = plenigo::CheckoutHelper->new(configuration => $configuration);
+ my $checkout_code = $checkout_helper->createCheckoutCode($product);
 
 =head1 DESCRIPTION
 
@@ -23,7 +23,7 @@ use Carp qw(confess);
 use Crypt::JWT qw(encode_jwt);
 use Data::UUID;
 
-our $VERSION = '2.0004';
+our $VERSION = '2.0005';
 
 has configuration => (
     is       => 'ro',
