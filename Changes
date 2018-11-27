@@ -1,5 +1,8 @@
 Changes for plenigo perl SDK
 
+2.0006  2018-11-27
+        - Bugfixes
+        
 2.0005  2018-11-27
         - Added https://api.plenigo.com/#!/user/getSubscriptionsBought functionality
 

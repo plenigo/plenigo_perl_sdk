@@ -31,7 +31,7 @@ package plenigo::Product;
 use Moo;
 use Carp qw(confess);
 
-our $VERSION = '2.0005';
+our $VERSION = '2.0006';
 
 has product_id => (
     is       => 'rw',
