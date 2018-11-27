@@ -1,6 +1,6 @@
 # NAME
  
-plenigo Perl SDK - Collection of utility classes that create a wrapper around the [https://api.plenigo.com](plenigo API)
+plenigo Perl SDK - Collection of utility classes that create a wrapper around the [plenigo API](https://api.plenigo.com)
  
 # DESCRIPTION
  
