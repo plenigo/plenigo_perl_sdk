@@ -23,8 +23,8 @@ WriteMakefile(
       resources => {
           repository => {
               type => 'git',
-              url  => 'https://github.com/plenigo/plenigo_php_sdk.git',
-              web  => 'https://github.com/plenigo/plenigo_php_sdk',
+              url  => 'https://github.com/plenigo/plenigo_perl_sdk.git',
+              web  => 'https://github.com/plenigo/plenigo_perl_sdk',
           },
       }})
    : ()
