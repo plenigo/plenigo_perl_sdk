@@ -1,4 +1,4 @@
-package plenigo::CustomersManager;
+package plenigo::PurchasesManager;
 
 =head1 NAME
 
