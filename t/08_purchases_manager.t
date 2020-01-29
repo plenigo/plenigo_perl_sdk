@@ -4,10 +4,7 @@ use 5.10.0;
 use FindBin 1.51 qw($RealBin);
 use lib $RealBin;
 
-=pod
-# integration tests must be filled with valid company data to run correctly
-
-use Test::More tests => 1;
+use Test::More skip_all => 'integration tests must be filled with valid company data to run correctly';
 use plenigo::Configuration;
 use plenigo::CustomersManager;
 use plenigo::PurchasesManager;
@@ -24,4 +21,3 @@ my %customer_details = $customers_manager->registerCustomer($customer_mail_part 
 
 my $purchases_manager = plenigo::PurchasesManager->new(configuration => $configuration);
 ok($purchases_manager->getCustomerSubscriptions($customer_details{'customerId'}), 'Subscriptions of the customer returned successfully.');
-=cut

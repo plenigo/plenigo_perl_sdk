@@ -4,10 +4,7 @@ use 5.10.0;
 use FindBin 1.51 qw($RealBin);
 use lib $RealBin;
 
-=pod
-# integration tests must be filled with valid company data to run correctly
-
-use Test::More tests => 2;
+use Test::More skip_all => 'integration tests must be filled with valid company data to run correctly';
 use plenigo::Configuration;
 use plenigo::LoginManager;
 use Try::Tiny;
@@ -25,4 +22,3 @@ my %customer_details = $loginManager->verifyLoginData($customer_email, $customer
 is($customer_details{'userId'}, $customer_id, 'Check customer\'s log in data via API.');
 
 ok($loginManager->createLoginTokens($customer_id), 'Create login tokens for a given user.');
-=cut
