@@ -1,0 +1,17 @@
+name: Tests on Linux
+
+on: [push]
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: install cpanm
+      run: sudo apt-get install --no-install-recommends --yes cpanminus
+    - name: install deps
+      run: cpanm --sudo -n --installdeps .
+    - name: perl tests
+      run: prove -v -l t
