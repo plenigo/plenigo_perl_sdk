@@ -29,7 +29,7 @@ use plenigo::AccessRightsManager;
                 accessGranted => \1,
                 userProducts  => [{
                     blocked => \0,
-                    nextRenewalDate => 1582761600000,
+                    nextRenewalDate => '1582761600000',
                     productId => $args->{productId},
                 }],
             },
@@ -37,7 +37,7 @@ use plenigo::AccessRightsManager;
                 accessGranted => \1,
                 userProducts  => [{
                     blocked => \0,
-                    nextRenewalDate => 0,
+                    lifeTimeEnd => '1582761600000',
                     productId => $args->{productId},
                 }],
             },

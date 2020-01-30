@@ -151,6 +151,9 @@ sub willRenew {
         });
     }
     my $user_product = shift @{ $result->{userProducts} || [] } || {};
+    if (defined $user_product->{lifeTimeEnd}) {
+        return $user_product->{lifeTimeEnd} <= 0;
+    }
     if (defined $user_product->{nextRenewalDate}) {
         return $user_product->{nextRenewalDate} > 0;
     }
