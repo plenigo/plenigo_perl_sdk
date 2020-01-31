@@ -1,5 +1,7 @@
 Changes for plenigo perl SDK
 
+Unreleased
+        - Added https://api.plenigo.com/#!/user/hasBoughtProductWithProducts functionality
 2.0006  2018-11-27
         - Bugfixes
         
