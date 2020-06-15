@@ -43,7 +43,7 @@ has configuration => (
 
 =cut
 
-sub createCheckoutCode {
+sub getPurchaseId {
     my ($self, $offer) = @_;
 
     my $rest_client = plenigo::RestClient->new(configuration => $self->configuration);

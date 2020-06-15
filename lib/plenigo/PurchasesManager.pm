@@ -23,7 +23,7 @@ package plenigo::PurchasesManager;
 
 =head1 DESCRIPTION
 
- plenigo::CustomerManPurchasesManagerager provides functionality to offer purchase information.
+ plenigo::CustomerPurchasesManager provides functionality to offer purchase information.
 
 =cut
 
