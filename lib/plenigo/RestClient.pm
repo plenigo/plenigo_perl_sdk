@@ -30,7 +30,7 @@ sub _createRestClient {
         host    => $self->configuration->use_stage ? $self->configuration->api_host_stage : $self->configuration->api_host,
         timeout => 10,
     });
-    $client->addHeader('plenigoToken', $self->configuration->access_token);
+    $client->addHeader('X-plenigo-token', $self->configuration->access_token);
     $client->addHeader('Content-Type', 'application/json');
     $client->addHeader('Accept', 'application/json');
 
