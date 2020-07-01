@@ -65,6 +65,18 @@ sub _build__rest_client {
 
 =cut
 
+sub getAccessRights {
+    my ($self, $customer_id) = @_;
+
+    my %result = $self->_rest_client->get("accessRights/$customer_id");
+
+    my @access_right_unique_ids = map {
+        $_->{accessRightUniqueId}
+    } @{$result{response_content}->{items}};
+
+    return $self->hasAccess($customer_id, @access_right_unique_ids);
+}
+
 =head2 hasAccess($customer_id, @product_ids)
 
  Test if a customer has access rights.
