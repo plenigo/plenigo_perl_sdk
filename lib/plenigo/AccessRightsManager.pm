@@ -10,8 +10,8 @@ package plenigo::AccessRightsManager;
 
  # Prepare configuration
 
- my $activate_testing = 0;
- my $configuration = plenigo::Configuration->new(company_id => 'YOUR_COMPANY_ID, secret => 'YOUR_SECRET', staging => $activate_testing);
+ my $use_stage = 0; # set if stage system should be used
+ my $configuration = plenigo::Configuration->new(access_token => 'ACCESS_TOKEN', use_stage => $use_stage);
 
  # Instantiate access rights manager
 
@@ -46,7 +46,7 @@ use Carp qw(confess);
 use plenigo::Ex;
 use plenigo::RestClient;
 
-our $VERSION = '2.0007';
+our $VERSION = '3.0001';
 
 has configuration => (
     is       => 'ro',
@@ -65,6 +65,30 @@ sub _build__rest_client {
 
 =cut
 
+sub getAccessRights {
+    my ($self, $customer_id) = @_;
+
+    my %result = $self->_rest_client->get("accessRights/$customer_id");
+
+    my @access_right_unique_ids = map {
+        $_->{accessRightUniqueId}
+    } @{$result{response_content}->{items}};
+
+    return $self->hasAccess($customer_id, @access_right_unique_ids);
+}
+
+sub getGrantedAccessRightsItems {
+    my ($self, $customer_id) = @_;
+
+    my %access_rights = $self->getAccessRights($customer_id);
+
+    return [
+        grep {
+            $_->{accessGranted}
+        } @{$access_rights{items}}
+    ];
+}
+
 =head2 hasAccess($customer_id, @product_ids)
 
  Test if a customer has access rights.
@@ -72,10 +96,13 @@ sub _build__rest_client {
 =cut
 
 sub hasAccess {
-    my ($self, $customer_id, @product_ids) = @_;
+    my ($self, $customer_id, @access_right_unique_ids) = @_;
 
     my $rest_client = plenigo::RestClient->new(configuration => $self->configuration);
-    my %result = $rest_client->get('user/product/details', { customerId => $customer_id, productId => @product_ids, useExternalCustomerId => $self->configuration->use_external_customer_id, testMode => $self->configuration->staging });
+    my %result = $rest_client->get(
+        'accessRights/' . $customer_id . '/hasAccess',
+        { accessRightUniqueIds => join(',', @access_right_unique_ids) }
+    );
     if ($result{'response_code'} == 403) {
         return('accessGranted' => 0)
     }
@@ -94,8 +121,6 @@ sub addAccess {
     my ($self, $customer_id, %access_request) = @_;
     
     my $rest_client = plenigo::RestClient->new(configuration => $self->configuration);
-    my %additional_attributes = (testMode => $self->configuration->staging, useExternalCustomerId => $self->configuration->use_external_customer_id);
-    %access_request = (%access_request, %additional_attributes);
     my $result = $rest_client->post('access/' . $customer_id . '/addWithDetails', {}, %access_request);
     if (defined $result && $result->response_code == 404) {
        plenigo::Ex->throw({ code => 404, message => 'There is no customer for the customer id passed.' });
@@ -104,63 +129,19 @@ sub addAccess {
     return 1;
 }
 
-=head2 removeAccess($customer_id, @product_ids)
+=head2 removeAccess($customer_id, $access_right_unique_id)
 
- Remove access rights from a customer.
+ Remove access right from a customer.
 
 =cut
 
 sub removeAccess {
-    my ($self, $customer_id, @product_ids) = @_;
+    my ($self, $customer_id, $access_right_unique_id) = @_;
 
     my $rest_client = plenigo::RestClient->new(configuration => $self->configuration);
-    $rest_client->delete('access/' . $customer_id . '/remove', { customerId => $customer_id, productIds => @product_ids, useExternalCustomerId => $self->configuration->use_external_customer_id, testMode => $self->configuration->staging });
+    $rest_client->delete('accessRights/' . $customer_id . '/', $access_right_unique_id);
 
     return 1;
-}
-
-=head2 willRenew
-
-  my $truth = $access_rights->willRenew($customer_id, $product_id);
-
-Test if a customer's subscription will renew.
-
-=cut
-
-sub willRenew {
-    my ($self, $customer_id, $product_id) = @_;
-    my $rest_client = $self->_rest_client;
-    my $result = $rest_client->get(
-        'user/product/details', {
-            customerId => $customer_id,
-            productId => $product_id,
-            useExternalCustomerId => $self->configuration->use_external_customer_id,
-            testMode => $self->configuration->staging,
-        },
-    );
-    if (ref($result) ne 'HASH') {
-        plenigo::Ex->throw({
-            code => 500,
-            message => 'There was an internal error. Please try again later.',
-        });
-    }
-    if (exists $result->{error}) {
-        plenigo::Ex->throw({
-            code => 404,
-            message => $result->{error},
-        });
-    }
-    my $user_product = shift @{ $result->{userProducts} || [] } || {};
-    if (defined $user_product->{lifeTimeEnd}) {
-        return $user_product->{lifeTimeEnd} <= 0;
-    }
-    if (defined $user_product->{nextRenewalDate}) {
-        return $user_product->{nextRenewalDate} > 0;
-    }
-    plenigo::Ex->throw({
-        code => 500,
-        message => 'There was an internal error. Please try again later.',
-    });
 }
 
 1;
