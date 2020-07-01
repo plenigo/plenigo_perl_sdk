@@ -77,6 +77,18 @@ sub getAccessRights {
     return $self->hasAccess($customer_id, @access_right_unique_ids);
 }
 
+sub getGrantedAccessRightsItems {
+    my ($self, $customer_id) = @_;
+
+    my %access_rights = $self->getAccessRights($customer_id);
+
+    return [
+        grep {
+            $_->{accessGranted}
+        } @{$access_rights{items}}
+    ];
+}
+
 =head2 hasAccess($customer_id, @product_ids)
 
  Test if a customer has access rights.
