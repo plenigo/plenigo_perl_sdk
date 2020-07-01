@@ -25,6 +25,7 @@ our $VERSION = '3.0001';
 
 has code => (is=>'ro');
 has message  => (is=>'ro');
+has errorDetails => (is => 'ro');
 
 sub e {
     if (ref($_) eq 'plenigo::Ex') {
