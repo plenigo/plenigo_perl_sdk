@@ -77,7 +77,7 @@ sub hasAccess {
     my $rest_client = plenigo::RestClient->new(configuration => $self->configuration);
     my %result = $rest_client->get(
         'accessRights/' . $customer_id . '/hasAccess',
-        { accessRightsUniqueId => join(',', @access_right_unique_ids) }
+        { accessRightUniqueIds => join(',', @access_right_unique_ids) }
     );
     if ($result{'response_code'} == 403) {
         return('accessGranted' => 0)
