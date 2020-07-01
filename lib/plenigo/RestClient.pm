@@ -44,7 +44,7 @@ sub _checkResponse {
         plenigo::Ex->throw({ code => 400, message => 'The given parameters could not be processed.', errorDetails => decode_json($client->responseContent) });
     }
     if ($client->responseCode == 401) {
-        plenigo::Ex->throw({ code => 401, message => 'API request could not be authorized. Company id or/and secret is/are not correct.' });
+        plenigo::Ex->throw({ code => 401, message => 'API request could not be authorized.' });
     }
     if ($client->responseCode == 500) {
         plenigo::Ex->throw({ code => 500, message => 'There was an internal error. Please try again later.' });
