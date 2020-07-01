@@ -54,3 +54,5 @@ sub createLoginTokens {
         return %{$result{'response_content'}};
     }
 }
+
+1;
