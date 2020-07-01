@@ -46,7 +46,7 @@ has api_host_stage => (
 
 has api_url => (
     is      => 'rw',
-    default => '/api/v3/'
+    default => '/api/v3.0/'
 );
 
 1;
