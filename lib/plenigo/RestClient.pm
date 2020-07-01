@@ -40,15 +40,13 @@ sub _createRestClient {
 sub _checkResponse {
     my ($self, $client) = @_;
 
-    if ($client->responseCode == 400) {
-        plenigo::Ex->throw({ code => 400, message => 'The given parameters could not be processed.', errorDetails => decode_json($client->responseContent) });
-    }
-    if ($client->responseCode == 401) {
-        plenigo::Ex->throw({ code => 401, message => 'API request could not be authorized.' });
-    }
-    if ($client->responseCode == 500) {
-        plenigo::Ex->throw({ code => 500, message => 'There was an internal error. Please try again later.' });
-    }
+    return if $client->responseCode < 400;
+
+    plenigo::Ex->throw({
+        code         => $client->responseCode,
+        message      => decode_json($client->responseContent)->{errorMessage} || 'Bad Request',
+        errorDetails => decode_json($client->responseContent || '{}'),
+    });
 }
 
 sub get {
